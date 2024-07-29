@@ -1,0 +1,36 @@
+{
+  "menu": [
+    {
+      "id": 1,
+      "imageURL": "https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg",
+      "title": "Pizza Margherita",
+      "description": "Classic cheese and tomato pizza.",
+      "price": 10,
+      "ratings": 4.5
+    },
+    {
+      "id": 2,
+      "imageURL": "https://images.immediate.co.uk/production/volatile/sites/30/2013/05/spaghetti-carbonara-382837d.jpg?resize=768,574",
+      "title": "Spaghetti Carbonara",
+      "description": "Pasta with creamy sauce and bacon.",
+      "price": 12,
+      "ratings": 4.7
+    },
+    {
+      "imageURL": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2016/6/12/3/FNM070116_Penne-with-Vodka-Sauce-and-Mini-Meatballs-recipe_s4x3.jpg.rend.hgtvcom.1280.1280.suffix/1465939620872.jpeg",
+      "title": "Testing food",
+      "description": "food description",
+      "price": "23",
+      "ratings": "7",
+      "id": 5
+    },
+    {
+      "imageURL": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2016/6/12/3/FNM070116_Penne-with-Vodka-Sauce-and-Mini-Meatballs-recipe_s4x3.jpg.rend.hgtvcom.1280.1280.suffix/1465939620872.jpeg",
+      "title": "test food",
+      "description": "random description...",
+      "price": "12",
+      "ratings": "8",
+      "id": 6
+    }
+  ]
+}

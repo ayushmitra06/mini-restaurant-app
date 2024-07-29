@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Page</title>
+  <link rel="stylesheet" href="styles/admin.css">
+</head>
+<body>
+  
+  <div class="admin-container">
+    <a href="login.html" class="goback">Go Back</a>
+    <span id="logout" class="logout">Logout</span>
+    <h2>Admin Page</h2>
+    <form id="menu-form">
+      <div class="input-group">
+        <label for="imageURL">Image URL:</label>
+        <input type="url" id="imageURL" required>
+      </div>
+      <div class="input-group">
+        <label for="title">Title:</label>
+        <input type="text" id="title" required>
+      </div>
+      <div class="input-group">
+        <label for="description">Description:</label>
+        <textarea id="description" required></textarea>
+      </div>
+      <div class="input-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" required>
+      </div>
+      <div class="input-group">
+        <label for="ratings">Ratings:</label>
+        <input type="number" id="ratings" required>
+      </div>
+      <button type="submit">Add Menu Item</button>
+    </form>
+    <a class="view-menu-link" href="menu.html">View Menu</a>
+  </div>
+  <script src="scripts/admin.js"></script>
+</body>
+</html>
