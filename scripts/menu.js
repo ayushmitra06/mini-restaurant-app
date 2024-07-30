@@ -1,9 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
   const menuItemsContainer = document.getElementById("menu-items");
+  const prevPageButton = document.getElementById("prev-page");
+  const nextPageButton = document.getElementById("next-page");
+  const pageNumbers = document.getElementById("page-numbers");
 
-  const token = localStorage.getItem("token");;
+  const itemsPerPage = 3;
+  let currentPage = 1;
+  let totalPages = 1;
+  let menuItems = [];
 
-  if(!token){
+  const token = localStorage.getItem("token");
+
+  if (!token) {
     window.location.href = "login.html";
     return;
   }
@@ -11,17 +19,21 @@ document.addEventListener("DOMContentLoaded", () => {
   async function fetchItems() {
     try {
       const response = await fetch(`https://server-app-std6.onrender.com/menu`);
-      const menuItems = await response.json();
-      // console.log(menuItems);
+      menuItems = await response.json();
+      totalPages = Math.ceil(menuItems.length / itemsPerPage);
       renderMenuItems(menuItems);
+      updatePaginationControls();
     } catch (e) {
       console.log("Error fetching menu items:", e.message);
     }
   }
 
-  function renderMenuItems(menuItems) {
+  function renderMenuItems(items) {
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const itemsToRender = items.slice(start, end);
     menuItemsContainer.innerHTML = "";
-    menuItems.forEach((item) => {
+    itemsToRender.forEach((item) => {
       const menuItem = document.createElement("div");
       menuItem.classList.add("menu-item");
 
@@ -39,18 +51,40 @@ document.addEventListener("DOMContentLoaded", () => {
       menuItemsContainer.appendChild(menuItem);
     });
   }
+
+  function updatePaginationControls() {
+    pageNumbers.textContent = `Page ${currentPage} of ${totalPages}`;
+    prevPageButton.disabled = currentPage === 1;
+    nextPageButton.disabled = currentPage === totalPages;
+  }
+
+  prevPageButton.addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderMenuItems(menuItems);
+      updatePaginationControls();
+    }
+  });
+
+  nextPageButton.addEventListener("click", () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderMenuItems(menuItems);
+      updatePaginationControls();
+    }
+  });
+
   window.editMenuItem = async (id) => {
     try {
-      
       const response = await fetch(`https://server-app-std6.onrender.com/menu/${id}`);
       const existingItem = await response.json();
-  
+
       const title = prompt("Enter new title:", existingItem.title);
       const description = prompt("Enter new description:", existingItem.description);
       const price = prompt("Enter new price:", existingItem.price);
       const ratings = prompt("Enter new ratings:", existingItem.ratings);
       const imageURL = existingItem.imageURL;
-  
+
       const updatedItem = {
         title,
         description,
@@ -58,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ratings,
         imageURL
       };
-  
+
       const updateResponse = await fetch(`https://server-app-std6.onrender.com/menu/${id}`, {
         method: "PUT",
         headers: {
@@ -68,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       const result = await updateResponse.json();
       console.log(result);
-  
+
       fetchItems();
     } catch (e) {
       console.error("Error editing menu item:", e.message);
@@ -82,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
           method: "DELETE",
         });
         const result = await response.json();
-        // console.log(result);
+        console.log(result);
         fetchItems();
       } catch (e) {
         console.error("Error deleting menu item:", e.message);

@@ -4,15 +4,24 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    background-image: url('../assets/bg-image.jpg'); 
+    backdrop-filter: blur(0.5px);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+    background-position: center;
+    margin: 0;
   }
   
   .login-container {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     width: 300px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    border: 0.5px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
   }
   
   h2 {
@@ -33,12 +42,13 @@ body {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
+    border-radius: 5px;
   }
   
   button {
     width: 100%;
     padding: 10px;
-    background-color: #28a745;
+    background-color: #3098e1;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -54,7 +64,7 @@ body {
     color: rgb(255, 255, 255);
     font-weight: 500;
     font-size: small;
-    background-color:#28a745 ;
+    background-color:#3098e1 ;
     padding: 5px;
     border-radius: 4px;
   }

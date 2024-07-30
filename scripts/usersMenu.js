@@ -10,36 +10,73 @@ document.addEventListener("DOMContentLoaded", () => {
   const priceRangeLabel = document.getElementById("price-range-label");
   const applyFilterButton = document.getElementById("apply-filter");
 
+  const prevPageButton = document.getElementById("prev-page");
+  const nextPageButton = document.getElementById("next-page");
+  const pageNumbers = document.getElementById("page-numbers");
+
+  const itemsPerPage = 3;
+  let currentPage = 1;
+  let totalPages = 1;
+
   let menuItems = [];
 
   async function fetchItems() {
     try {
       const response = await fetch(`https://server-app-std6.onrender.com/menu`);
       menuItems = await response.json();
+      totalPages = Math.ceil(menuItems.length / itemsPerPage);
       renderMenuItems(menuItems);
+      updatePaginationControls();
     } catch (e) {
       console.log("Error fetching menu items:", e.message);
     }
   }
 
   function renderMenuItems(items) {
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const itemsToRender = items.slice(start, end);
     menuItemsContainer.innerHTML = "";
-    items.forEach((item) => {
+    itemsToRender.forEach((item) => {
       const menuItem = document.createElement("div");
-      menuItem.classList.add("menu-item", "card", "mb-3");
+      menuItem.classList.add("menu-item");
 
       menuItem.innerHTML = `
-        <img src="${item.imageURL}" alt="${item.title}" class="card-img-top">
-        <div class="menu-item-info card-body">
-          <h3 class="card-title">${item.title}</h3>
-          <p class="card-text">${item.description}</p>
-          <p class="card-text">Price: $${item.price}</p>
-          <p class="card-text">Ratings: ${item.ratings}</p>
+        <img src="${item.imageURL}" alt="${item.title}">
+        <div class="menu-item-info">
+          <h3>${item.title}</h3>
+          <p>${item.description}</p>
+          <p>Price: $${item.price}</p>
+          <p>Ratings: ${item.ratings}</p>
+          <button onclick="">Order Now</button>
         </div>`;
 
       menuItemsContainer.appendChild(menuItem);
     });
   }
+
+  function updatePaginationControls() {
+    pageNumbers.textContent = `Page ${currentPage} of ${totalPages}`;
+    prevPageButton.disabled = currentPage === 1;
+    nextPageButton.disabled = currentPage === totalPages;
+  }
+
+  prevPageButton.addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderMenuItems(menuItems);
+      updatePaginationControls();
+    }
+  });
+
+  nextPageButton.addEventListener("click", () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderMenuItems(menuItems);
+      updatePaginationControls();
+    }
+  });
+  
 
   function sortItems(items, key, order) {
     if (order === "asc") {
@@ -53,9 +90,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function filterItems(items, minPrice, maxPrice) {
     return items.filter(item => {
       const price = parseFloat(item.price);
-      return (isNaN(minPrice) || price >= minPrice) && (isNaN(maxPrice) || price <= maxPrice);
+      const isAboveMinPrice = isNaN(minPrice) || price >= minPrice;
+      const isBelowMaxPrice = isNaN(maxPrice) || price <= maxPrice;
+      return isAboveMinPrice && isBelowMaxPrice;
     });
   }
+  
 
   sortPriceSelect.addEventListener("change", () => {
     const sortedItems = sortItems([...menuItems], "price", sortPriceSelect.value);

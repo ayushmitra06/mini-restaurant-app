@@ -1,60 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Restaurant Menu</title>
-  <link rel="stylesheet" href="styles/usersMenu.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css">
-</head>
-<body>
-  <div class="container my-4">
-    <a class="home-link" href="index.html">Home</a>
-    <h1 class="text-center mb-4">Restaurant Menu</h1>
-    
-    <div class="controls mb-4">
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label for="sort-price">Sort by Price:</label>
-          <select id="sort-price" class="form-control">
-            <option value="none">None</option>
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
-          </select>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="sort-ratings">Sort by Ratings:</label>
-          <select id="sort-ratings" class="form-control">
-            <option value="none">None</option>
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
-          </select>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label for="filter-price">Filter by Price Range:</label>
-          <div class="mt-2">
-            <input id="price-range" type="text" class="slider" value="" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="[0,100]"/>
-          </div>
-          <span id="price-range-label" class="form-text text-muted">Price range: $0 - $100</span>
-        </div>
-        <div class="col-md-6 mb-3 d-flex align-items-end">
-          <button id="apply-filter" class="btn btn-primary w-100">Apply Filter</button>
-        </div>
-      </div>
-      
-      
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Menu</title>
+    <link rel="stylesheet" href="styles/usersMenu.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css"
+    />
+  </head>
+  <body>
+    <div class="container my-4">
+      <a class="home-link" href="index.html">Home</a>
+      <h1 class="text-center mb-4">Restaurant Menu</h1>
 
-    <div class="menu-items" id="menu-items"></div>
-  </div>
-  <script src="scripts/usersMenu.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
-</body>
+      <div class="controls mb-4">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="sort-price">Sort by Price:</label>
+            <select id="sort-price" class="form-control">
+              <option value="none">None</option>
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="sort-ratings">Sort by Ratings:</label>
+            <select id="sort-ratings" class="form-control">
+              <option value="none">None</option>
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="filter-price">Filter by Price Range:</label>
+            <div class="mt-2">
+              <input
+                id="price-range"
+                type="text"
+                class="slider"
+                value=""
+                data-slider-min="0"
+                data-slider-max="100"
+                data-slider-step="1"
+                data-slider-value="[0,100]"
+              />
+            </div>
+            <span id="price-range-label" class="form-text text-muted"
+              >Price range: $0 - $100</span
+            >
+          </div>
+          <div class="col-md-6 mb-3 d-flex align-items-end">
+            <button id="apply-filter" class="btn btn-primary w-100">
+              Apply Filter
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-items" id="menu-items"></div>
+      <div class="pagination-controls" id="pagination-controls">
+        <button id="prev-page" disabled>Previous</button>
+        <span id="page-numbers"></span>
+        <button id="next-page" disabled>Next</button>
+      </div>
+    </div>
+    <script src="scripts/usersMenu.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+  </body>
 </html>

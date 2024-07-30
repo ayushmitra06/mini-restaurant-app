@@ -1,19 +1,22 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-  margin: 0;
-  padding: 0;
+  background-image: url('../assets/bg-image.jpg'); 
+    backdrop-filter: blur(0.5px);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+    background-position: center;
+    margin: 0;
 }
 
 .admin-container {
-  max-width: 800px;
-  margin: 50px auto;
+  max-width: 600px;
+  margin: 40px auto;
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  position: relative; /* Added */
+  position: relative;
 }
 
 .logout {
